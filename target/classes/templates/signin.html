@@ -1,0 +1,73 @@
+<html
+        xmlns:th="http://thymeleaf.org" lang="en"
+
+>
+<head>
+  <title>Sign In</title>
+  <link href="css/signin.css" rel="stylesheet" />
+  <link rel="stylesheet" href="~/node_modules/fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon-16x16.png" />
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <div class="my-image-holder">
+    <a class="navbar-brand fw-bold" th:href="@{/}"><img th:src="@{/assets/img/logo-black-GURARIDE.png}" alt="Gura Ride Logo" width="120" height="60"></a>
+  </div>
+    <div class="login-page">
+      <div class="form" style="margin-bottom: 100px">
+        <form class="login-form" method="post" th:action="@{/signin}" th:object="${users}">
+          <h1>User Signin Form</h1>
+          <div th:if="${param.fail}" class="alert alert-success">
+            <i class="fa-light fa-triangle-exclamation"></i>
+            <i class="fa-solid fa-xmark"></i>
+            <span th:text="${param.fail}"></span>
+            <!--            Invalid Bike Information-->
+          </div>
+          <br>
+          <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email Address"
+                  id="email"
+                  th:field="*{email}"
+                  required>
+          <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+          <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  id="password"
+                  minlength="8"
+                  th:field="*{password}"
+                  required>
+          <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
+
+          <button type="submit" class="btn btn-primary">login</button>
+          <p class="message">Not registered? <a th:href="@{/signup}">Create an account</a></p>
+          <p class="message">Back To Home <a th:href="@{/}">Page...</a></p>
+        </form>
+      </div>
+    </div>
+
+</main>
+<!-- Footer-->
+<footer class="bg-black text-center py-5">
+  <div class="container px-5">
+    <div class="text-white-50 small">
+      <div class="mb-2">&copy; ITH 2023. All Rights Reserved.</div>
+      <a href="#!">Privacy</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">Terms</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">FAQ</a>
+    </div>
+  </div>
+</footer>
+</body>
+<script>
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>
+</html>

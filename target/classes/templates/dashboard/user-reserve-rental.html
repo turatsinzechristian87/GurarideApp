@@ -1,0 +1,100 @@
+<html
+        xmlns:th="http://thymeleaf.org" lang="en"
+
+>
+<head>
+  <title>User - Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon-16x16.png" />
+  <link href="css/signin.css" rel="stylesheet" />
+  <link rel="stylesheet" href="~/node_modules/fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <div class="my-image-holder">
+    <a class="navbar-brand fw-bold" th:href="@{/worker-dashboard}"><img th:src="@{/assets/img/logo-black-GURARIDE.png}" alt="Gura Ride Logo" width="120" height="60"></a>
+  </div>
+  <div class="login-page">
+    <div class="form" style="margin-bottom: 100px">
+      <form class="login-form" method="post" th:action="@{/user-reserve-rental}" th:object="${rental}">
+        <div th:if="${param.fail}" class="alert alert-success">
+          <i class="fa-light fa-triangle-exclamation"></i>
+          <i class="fa-solid fa-xmark"></i>
+          Please Provide Valid Rental Information.
+        </div>
+        <h1>Rental Reservation Form</h1>
+<!--        <div class="form-label">-->
+<!--          <label>Renter ID </label>-->
+<!--          <select id="userId" th:field="*{User}" required>-->
+<!--            <option value="" disabled selected>Select Renter ID</option>-->
+<!--            <option th:each="id : ${userIds}" th:value="${id}" th:text="${id}"></option>-->
+<!--          </select>-->
+<!--            <input type="hidden" th:field="*{userID.retrievedID}">-->
+<!--        </div>-->
+        <div id="form-label" class="form-label">
+          <label>Bike ID </label>
+          <select id="bikeId" th:field="*{Bike}" required>
+            <option value="" disabled selected>Select Bike ID</option>
+            <option th:each="id : ${bikeIds}" th:value="${id}" th:text="${id}"></option>
+          </select>
+        </div>
+        <div class="form-label">
+          <label for="startTime">Start Time</label>
+          <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="startTime"
+                  name="startTime"
+                  th:field="*{startTime}"
+                  placeholder="Start Time">
+          <p th:if="${#fields.hasErrors('startTime')}" class="text-danger" th:errors="*{startTime}"></p>
+
+        </div>
+
+        <div class="form-label">
+          <label for="startTime">End Time</label>
+          <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="endTime"
+                  name="endTime"
+                  th:field="*{endTime}"
+                  placeholder="End Time">
+          <p th:if="${#fields.hasErrors('endTime')}" class="text-danger" th:errors="*{endTime}"></p>
+
+        </div>
+        <div class="form-label">
+          <label>Status </label>
+          <select
+                  id="status"
+                  th:field="*{status}"
+                  required>
+            <option value="" disabled selected>Select Status</option>
+            <option value="RESERVE">RESERVE</option>
+          </select>
+          <p th:if="${#fields.hasErrors('status')}" class="text-danger" th:errors="*{status}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <button type="submit" class="btn btn-primary">Reserve</button>
+        <p class="message">Back To Dashboard <a th:href="@{/user-dashboard}"> Page Here...</a></p>
+      </form>
+    </div>
+  </div>
+
+</main>
+<!-- Footer-->
+<footer class="bg-black text-center py-5">
+  <div class="container px-5">
+    <div class="text-white-50 small">
+      <div class="mb-2">&copy; ITH 2023. All Rights Reserved.</div>
+      <a href="#!">Privacy</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">Terms</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">FAQ</a>
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<html
+        xmlns:th="http://thymeleaf.org" lang="en"
+
+>
+<head>
+  <title>User - details - Edit</title>
+  <link href="/css/signin.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon-16x16.png" />
+  <link rel="stylesheet" href="~/node_modules/fortawesome/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <div cl ass="my-image-holder">
+    <a class="navbar-brand fw-bold" th:href="@{/user-dashboard}"><img th:src="@{/assets/img/logo-black-GURARIDE.png}" alt="Gura Ride Logo" width="120" height="60"></a>
+  </div>
+  <div class="login-page">
+
+    <div class="form">
+      <form class="register-form" method="post" th:action="@{/user-info/edit/{id}(id=${users.id})}" th:object="${users}">
+        <h1>User Signup Form</h1>
+        <div class="form-group">
+          <div th:if="${param.fail}" class="alert alert-success">
+            <i class="fa-light fa-triangle-exclamation"></i>
+            <span th:text="${param.fail}"></span>
+          </div>
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  id="firstname"
+                  th:field="*{firstName}"
+                  required>
+          <p th:if="${#fields.hasErrors('firstName')}" class="text-danger" th:errors="*{firstName}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  id="lastname"
+                  th:field="*{lastName}"
+                  required>
+          <p th:if="${#fields.hasErrors('lastName')}" class="text-danger" th:errors="*{lastName}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="National ID"
+                  id="nationalid"
+                  title="Please enter a 16-digit number"
+                  th:field="*{nationalId}"
+                  required>
+          <p th:if="${#fields.hasErrors('nationalId')}" class="text-danger" th:errors="*{nationalId}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email Address"
+                  id="email"
+                  th:field="*{email}"
+                  required>
+          <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Phone Number"
+                  id="phone" pattern="[0-9]{10}"
+                  title="Please enter a 10-digit number"
+                  th:field="*{phoneNumber}"
+                  required>
+          <p th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger" th:errors="*{phoneNumber}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Address"
+                  id="address"
+                  th:field="*{address}"
+                  required>
+          <p th:if="${#fields.hasErrors('address')}" class="text-danger" th:errors="*{address}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div id="form-label">
+          <label> Status</label>
+          <select
+                  id="status"
+                  th:field="*{status}"
+                  required>
+            <option value="" disabled selected>Select Status</option>
+            <option value="worker">Worker</option>
+            <option value="renter">Renter</option>
+          </select>
+          <p th:if="${#fields.hasErrors('status')}" class="text-danger" th:errors="*{status}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  id="password"
+                  minlength="8"
+                  th:field="*{password}"
+                  required>
+          <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <div class="form-group">
+          <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Confirm Password"
+                  id="confirm_password"
+                  minlength="8"
+                  required>
+          <!--<div class="invalid-feedback"></div>-->
+        </div>
+        <button type="submit" class="btn btn-primary">Signup</button>
+        <p class="message">Already have an account? <a th:href="@{/signin}">Sign In</a></p>
+        <p class="message">Back To Home <a th:href="@{/}">Page...</a></p>
+      </form>
+    </div>
+  </div>
+
+</main>
+<!-- Footer-->
+<footer class="bg-black text-center py-5">
+  <div class="container px-5">
+    <div class="text-white-50 small">
+      <div class="mb-2">&copy; ITH 2023. All Rights Reserved.</div>
+      <a href="#!">Privacy</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">Terms</a>
+      <span class="mx-1">&middot;</span>
+      <a href="#!">FAQ</a>
+    </div>
+  </div>
+</footer>
+</body>
+<script>
+  $('.message a').click(function(){
+    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>
+</html>

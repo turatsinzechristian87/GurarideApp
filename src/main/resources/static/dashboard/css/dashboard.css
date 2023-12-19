@@ -1,0 +1,13 @@
+.my-image-holder{
+    position: absolute;
+    top: -50px;
+    left: 20px;
+}
+.row-card-a a{
+    cursor: pointer;
+    text-decoration: none;
+}
+.row-card-a a:hover{
+    color: #6beb1c;
+    text-underline: black;
+}
